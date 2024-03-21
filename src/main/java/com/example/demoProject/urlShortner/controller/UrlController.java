@@ -37,12 +37,11 @@ public class UrlController {
     @GetMapping("/{url}")
     public ResponseEntity<String> getTinyUrl(@PathVariable(required = true) String url){
        Url originalUrl= urlService.getOriginalUrl(url);
-       System.out.println("originalUr."+" "+originalUrl);
        if(originalUrl!=null){
            String fullUrl = "https://" + originalUrl.getOriginalUrl();
            return ResponseEntity.status(302).location(URI.create(fullUrl)).build();
        }
         return ResponseEntity.notFound().build();
-       
+
     }
 }
